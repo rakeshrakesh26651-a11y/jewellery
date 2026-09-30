@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FBFBF7;
+    --bg-card: #F7F6F2;
+    --bg-muted: #F2F1ED;
+    
+    --text-primary: #1C1C1C;
+    --text-secondary: #787878;
+    --text-muted: #9E9E9E;
+    
+    --border-subtle: #ECEBE6;
+    --border-light: rgba(28, 28, 28, 0.08);
+    --border-dark: #1C1C1C;
+    
+    --font-heading: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Lenis smooth scrolling defaults */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAFAFA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D1C7;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A89A;
+}
+
+/* Aurum Typography Utilities */
+.font-luxury {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-body {
+  font-family: var(--font-sans);
+}
+
+/* Image reveal and hover zoom utility */
+.image-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.image-zoom-container img {
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.image-zoom-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Glassmorphism & backdrop */
+.header-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(28, 28, 28, 0.05);
+}
+
+.header-transparent {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+/* Aurum button styling */
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1C1C1C;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.28px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-dark:hover {
+  background-color: #333333;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #1C1C1C;
+  border: 1px solid rgba(28, 28, 28, 0.15);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.28px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline:hover {
+  background-color: #1C1C1C;
+  color: #FFFFFF;
+  border-color: #1C1C1C;
+  transform: translateY(-1px);
+}
+
+/* Hide scrollbar for carousel but keep functional */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
