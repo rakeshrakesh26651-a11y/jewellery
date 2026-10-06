@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Inter, Cinzel, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { StoreProvider } from '@/context/StoreContext';
@@ -50,6 +51,19 @@ export default function RootLayout({
       className={`${inter.variable} ${cinzel.variable} ${cormorant.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-white text-[#1C1C1C] selection:bg-[#1C1C1C] selection:text-white">
+        <Script
+          id="microsoft-clarity"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "yt04om2ou0");
+            `,
+          }}
+        />
         <StoreProvider>
           <SmoothScroll>
             <Header />
